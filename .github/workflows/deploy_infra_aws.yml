@@ -24,13 +24,13 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
         
+    - name: Terraform Init
+      run: terraform init
+    
     - name: Set Terraform log level and workspace
       run: |
         export TF_LOG=DEBUG
         terraform workspace select default || terraform workspace new default
-
-    - name: Terraform Init
-      run: terraform init
 
     - name: Terraform Apply
       run: terraform apply --auto-approve
