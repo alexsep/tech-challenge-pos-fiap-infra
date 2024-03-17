@@ -37,4 +37,3 @@ jobs:
       run: |
         export TF_LOG=DEBUG
         terraform apply --auto-approve
-      timeout-minutes: 20
