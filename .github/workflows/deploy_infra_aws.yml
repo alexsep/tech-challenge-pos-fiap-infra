@@ -23,6 +23,7 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
+        output-credentials: true
         
     - name: Terraform Init
       run: terraform init
@@ -33,5 +34,7 @@ jobs:
         terraform workspace select default || terraform workspace new default
 
     - name: Terraform Apply
-      run: terraform apply --auto-approve
-      timeout-minutes: 5
+      run: |
+        export TF_LOG=DEBUG
+        terraform apply --auto-approvet
+      timeout-minutes: 20
